@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LblQuestion = new MaterialSkin.Controls.MaterialLabel();
             this.PtbUser = new System.Windows.Forms.PictureBox();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PtbUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,9 +44,8 @@
             this.LblQuestion.Location = new System.Drawing.Point(40, 0);
             this.LblQuestion.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblQuestion.Name = "LblQuestion";
-            this.LblQuestion.Size = new System.Drawing.Size(5, 19);
+            this.LblQuestion.Size = new System.Drawing.Size(1, 0);
             this.LblQuestion.TabIndex = 0;
-            this.LblQuestion.Text = ".";
             // 
             // PtbUser
             // 
@@ -53,18 +54,24 @@
             this.PtbUser.Dock = System.Windows.Forms.DockStyle.Left;
             this.PtbUser.Location = new System.Drawing.Point(0, 0);
             this.PtbUser.Name = "PtbUser";
-            this.PtbUser.Size = new System.Drawing.Size(40, 38);
+            this.PtbUser.Size = new System.Drawing.Size(40, 36);
             this.PtbUser.TabIndex = 1;
             this.PtbUser.TabStop = false;
+            // 
+            // Timer
+            // 
+            this.Timer.Enabled = true;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // User
             // 
             this.AutoScroll = true;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.LblQuestion);
             this.Controls.Add(this.PtbUser);
             this.Name = "User";
-            this.Size = new System.Drawing.Size(148, 38);
+            this.Size = new System.Drawing.Size(146, 36);
+            this.Load += new System.EventHandler(this.User_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PtbUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -75,5 +82,6 @@
 
         private MaterialSkin.Controls.MaterialLabel LblQuestion;
         private System.Windows.Forms.PictureBox PtbUser;
+        private System.Windows.Forms.Timer Timer;
     }
 }

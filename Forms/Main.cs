@@ -26,6 +26,7 @@ namespace ChatBot_Calendar
         //---------------------------------------------------------------------
         private MaterialSkinManager materialSkinManager;
         private User User;
+        private Bot Bot;
 
         //---------------------------------------------------------------------
         // Method: Main
@@ -34,20 +35,34 @@ namespace ChatBot_Calendar
         public Main()
         {
             InitializeComponent();
-            SettingsScheme();
+            SettingsScheme(1);
         }
 
-        public void SettingsScheme()
+        public void SettingsScheme(int op)
         {
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Amber700,
-                Primary.Amber900,
-                Primary.Amber500,
-                Accent.Amber400,
-                TextShade.WHITE);
+            switch (op)
+            {
+                case 1:
+                    materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+                    materialSkinManager.ColorScheme = new ColorScheme(
+                        Primary.Amber700,
+                        Primary.Amber900,
+                        Primary.Amber500,
+                        Accent.Amber400,
+                        TextShade.WHITE);
+                    break;
+                case 2:
+                    materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+                    materialSkinManager.ColorScheme = new ColorScheme(
+                        Primary.BlueGrey900,
+                        Primary.BlueGrey900,
+                        Primary.BlueGrey500,
+                        Accent.LightBlue200,
+                        TextShade.WHITE);
+                    break;
+            }
         }
         //---------------------------------------------------------------------
         // Method: BtnQuestions_Click
@@ -58,23 +73,16 @@ namespace ChatBot_Calendar
         {
             if(!TxtQuestions.Text.Equals(""))
             {
-                //int NewWidth = PnlQuestions.Width / 2;
-
-                //UscQuestions.Question = TxtQuestions.Text;//Assigning the question to the label
-                //UscQuestions = new UscQuestions(NewWidth);//Creating a new instance of UscQuestions
-                //UscQuestions.Dock = DockStyle.Bottom;//Instancing the dock of the UscQuestions
-                //PnlQuestions.Controls.Add(UscQuestions);//Adding the new UscQuestions
-
-                //UscBot.Answer = "Respuestasssssssssssssssssssssssssss";
-                //UscBot = new UscBot(NewWidth);
-                //UscBot.Dock = DockStyle.Bottom;
-                //PnlQuestions.Controls.Add(UscBot);
                 User = new User(TxtQuestions);
+                Bot = new Bot(TxtQuestions);
                 PnlQuestions.Controls.Add(User);
+                PnlQuestions.Controls.Add(Bot);
+                TxtQuestions.Text = string.Empty; 
+                TxtQuestions.Focus();
             }
             else
             {
-                MaterialMessageBox.Show("Por favor escriba una pregunta", "Aviso");
+                MaterialMessageBox.Show("Por favor escriba una pregunta", "Aviso", HelpButton);
             }
         }
 
@@ -87,12 +95,27 @@ namespace ChatBot_Calendar
         {
             if (PnlQuestions.Controls.Count != 0)
             {
-                DialogResult answer = MaterialMessageBox.Show("¿Seguro quieres borrar el chat?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
+                DialogResult answer = MaterialMessageBox.Show("¿Seguro quieres borrar el chat?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.None, HelpButton);
                 if (answer == DialogResult.OK)
                 {
                     PnlQuestions.Controls.Clear();
                     PnlResults.Controls.Clear();
+                    TxtQuestions.Text = string.Empty;
+                    TxtQuestions.Focus();
                 }
+            }
+        }
+
+        //---------------------------------------------------------------------
+        // Method: TxtQuestions_KeyDown
+        // Description: This method is the event of the button BtnQuestions_Click
+        // to send question to PnlQuestions.
+        //---------------------------------------------------------------------
+        private void TxtQuestions_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BtnQuestions_Click(null, null);
             }
         }
     }

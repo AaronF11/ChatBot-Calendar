@@ -19,7 +19,7 @@ namespace ChatBot_Calendar.Controls
     // Author: Aarón Flores Pasos
     // Date: 26/03/2023
     //-------------------------------------------------------------------------
-    public partial class User : UserControl
+    public partial class Bot : UserControl
     {
         //---------------------------------------------------------------------
         // Attributes
@@ -31,7 +31,7 @@ namespace ChatBot_Calendar.Controls
         // Method: User
         // Description: This method is the constructor of the class.
         //---------------------------------------------------------------------
-        public User(MaterialTextBox TxtQuestions)
+        public Bot(MaterialTextBox TxtQuestions)
         {
             InitializeComponent();
             Complete = TxtQuestions.Text;
@@ -43,9 +43,9 @@ namespace ChatBot_Calendar.Controls
         // Method: User_Load
         // Description: This method is the event of the load of the user control.
         //---------------------------------------------------------------------
-        private void User_Load(object sender, EventArgs e)
+        private void Bot_Load(object sender, EventArgs e)
         {
-            Timer.Interval = 5;
+            Timer.Interval = 150;
             Timer.Start();
         }
 
@@ -57,7 +57,7 @@ namespace ChatBot_Calendar.Controls
         {
             string Parcial = Complete.Substring(0, PosActual);
 
-            LblQuestion.Text = Parcial;
+            LblAnswer.Text = Parcial;
 
             PosActual++;
 

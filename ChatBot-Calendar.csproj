@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Bot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Bot.Designer.cs">
+      <DependentUpon>Bot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\User.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\Bot.resx">
+      <DependentUpon>Bot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
