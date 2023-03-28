@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using ChatBot_Calendar.Controls;
+using ChatBot_Calendar.Class;
 
 namespace ChatBot_Calendar
 {
@@ -27,6 +28,7 @@ namespace ChatBot_Calendar
         private MaterialSkinManager materialSkinManager;
         private User User;
         private Bot Bot;
+        private Methods Methods;
 
         //---------------------------------------------------------------------
         // Method: Main
@@ -47,21 +49,23 @@ namespace ChatBot_Calendar
                 case 1:
                     materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
                     materialSkinManager.ColorScheme = new ColorScheme(
+                        Primary.Indigo500,
+                        Primary.Indigo700,
+                        Primary.Indigo100,
+                        Accent.LightBlue700,
+                        TextShade.WHITE
+                    );
+                    break;
+                case 2:
+                    materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+                    materialSkinManager.ColorScheme = new ColorScheme(
                         Primary.Amber700,
                         Primary.Amber900,
                         Primary.Amber500,
                         Accent.Amber400,
                         TextShade.WHITE);
                     break;
-                case 2:
-                    materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-                    materialSkinManager.ColorScheme = new ColorScheme(
-                        Primary.BlueGrey900,
-                        Primary.BlueGrey900,
-                        Primary.BlueGrey500,
-                        Accent.LightBlue200,
-                        TextShade.WHITE);
-                    break;
+
             }
         }
         //---------------------------------------------------------------------
@@ -79,6 +83,8 @@ namespace ChatBot_Calendar
                 PnlQuestions.Controls.Add(Bot);
                 TxtQuestions.Text = string.Empty; 
                 TxtQuestions.Focus();
+                Methods = new Methods();
+                MessageBox.Show(Methods.Example());
             }
             else
             {
