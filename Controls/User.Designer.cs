@@ -39,7 +39,6 @@
             // 
             this.LblQuestion.AutoSize = true;
             this.LblQuestion.Depth = 0;
-            this.LblQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblQuestion.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LblQuestion.Location = new System.Drawing.Point(40, 0);
             this.LblQuestion.MouseState = MaterialSkin.MouseState.HOVER;
@@ -54,7 +53,7 @@
             this.PtbUser.Dock = System.Windows.Forms.DockStyle.Left;
             this.PtbUser.Location = new System.Drawing.Point(0, 0);
             this.PtbUser.Name = "PtbUser";
-            this.PtbUser.Size = new System.Drawing.Size(40, 36);
+            this.PtbUser.Size = new System.Drawing.Size(40, 50);
             this.PtbUser.TabIndex = 1;
             this.PtbUser.TabStop = false;
             // 
@@ -70,7 +69,7 @@
             this.Controls.Add(this.LblQuestion);
             this.Controls.Add(this.PtbUser);
             this.Name = "User";
-            this.Size = new System.Drawing.Size(146, 36);
+            this.Size = new System.Drawing.Size(146, 50);
             this.Load += new System.EventHandler(this.User_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PtbUser)).EndInit();
             this.ResumeLayout(false);

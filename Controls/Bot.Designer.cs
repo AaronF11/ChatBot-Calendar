@@ -54,7 +54,7 @@
             this.PtbBot.Dock = System.Windows.Forms.DockStyle.Left;
             this.PtbBot.Location = new System.Drawing.Point(0, 0);
             this.PtbBot.Name = "PtbBot";
-            this.PtbBot.Size = new System.Drawing.Size(40, 36);
+            this.PtbBot.Size = new System.Drawing.Size(40, 50);
             this.PtbBot.TabIndex = 1;
             this.PtbBot.TabStop = false;
             // 
@@ -70,7 +70,7 @@
             this.Controls.Add(this.LblAnswer);
             this.Controls.Add(this.PtbBot);
             this.Name = "Bot";
-            this.Size = new System.Drawing.Size(146, 36);
+            this.Size = new System.Drawing.Size(146, 50);
             this.Load += new System.EventHandler(this.Bot_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PtbBot)).EndInit();
             this.ResumeLayout(false);

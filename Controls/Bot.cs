@@ -13,7 +13,7 @@ using MaterialSkin.Controls;
 namespace ChatBot_Calendar.Controls
 {
     //-------------------------------------------------------------------------
-    // Class: User
+    // Class: Bot
     // Description: This class is used to create a user control that will be used
     // to display the user's questions.
     // Author: Aarón Flores Pasos
@@ -24,28 +24,28 @@ namespace ChatBot_Calendar.Controls
         //---------------------------------------------------------------------
         // Attributes
         //---------------------------------------------------------------------
-        private string Complete;
+        public string Complete;
         private int PosActual = 0;
 
         //---------------------------------------------------------------------
-        // Method: User
+        // Method: Bot
         // Description: This method is the constructor of the class.
         //---------------------------------------------------------------------
-        public Bot(MaterialTextBox TxtQuestions)
+        public Bot(string Text)
         {
             InitializeComponent();
-            Complete = TxtQuestions.Text;
-            Dock = DockStyle.Bottom;
+            Complete = Text;
+            Dock = DockStyle.Top;
             AutoScroll = true;
         }
 
         //---------------------------------------------------------------------
-        // Method: User_Load
+        // Method: Bot_Load
         // Description: This method is the event of the load of the user control.
         //---------------------------------------------------------------------
         private void Bot_Load(object sender, EventArgs e)
         {
-            Timer.Interval = 150;
+            Timer.Interval = 50;
             Timer.Start();
         }
 

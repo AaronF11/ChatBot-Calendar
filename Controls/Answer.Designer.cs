@@ -28,18 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.LblAnswers = new MaterialSkin.Controls.MaterialLabel();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // LblAnswers
+            // 
+            this.LblAnswers.Depth = 0;
+            this.LblAnswers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LblAnswers.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblAnswers.Location = new System.Drawing.Point(0, 0);
+            this.LblAnswers.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblAnswers.Name = "LblAnswers";
+            this.LblAnswers.Size = new System.Drawing.Size(726, 578);
+            this.LblAnswers.TabIndex = 0;
+            this.LblAnswers.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // Timer
+            // 
+            this.Timer.Enabled = true;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // Answer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.LblAnswers);
             this.Name = "Answer";
-            this.Size = new System.Drawing.Size(730, 582);
+            this.Size = new System.Drawing.Size(726, 578);
+            //this.Load += new System.EventHandler(this.Answer_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private MaterialSkin.Controls.MaterialLabel LblAnswers;
+        private System.Windows.Forms.Timer Timer;
     }
 }

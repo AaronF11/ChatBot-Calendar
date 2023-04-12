@@ -31,11 +31,11 @@ namespace ChatBot_Calendar.Controls
         // Method: User
         // Description: This method is the constructor of the class.
         //---------------------------------------------------------------------
-        public User(MaterialTextBox TxtQuestions)
+        public User(string Question)
         {
             InitializeComponent();
-            Complete = TxtQuestions.Text;
-            Dock = DockStyle.Bottom;
+            Complete = Question;
+            Dock = DockStyle.Top;
             AutoScroll = true;
         }
 
