@@ -173,8 +173,11 @@
   <ItemGroup>
     <None Include="src\img\Clear.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Python\" />
+    <Content Include="Python\readme.txt" />
+    <Content Include="Python\script.py" />
+    <None Include="src\img\Ico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
