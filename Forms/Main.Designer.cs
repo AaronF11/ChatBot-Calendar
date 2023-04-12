@@ -32,22 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.TcOptions = new MaterialSkin.Controls.MaterialTabControl();
             this.Home = new System.Windows.Forms.TabPage();
-            this.ScMain = new System.Windows.Forms.SplitContainer();
-            this.PnlResults = new System.Windows.Forms.Panel();
+            this.TlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.TlpQuestions = new System.Windows.Forms.TableLayoutPanel();
             this.PnlQuestions = new System.Windows.Forms.Panel();
             this.TlpQuestionsDivisor = new System.Windows.Forms.TableLayoutPanel();
             this.BtnQuestions = new MaterialSkin.Controls.MaterialButton();
             this.BtnClear = new MaterialSkin.Controls.MaterialButton();
             this.TxtQuestions = new MaterialSkin.Controls.MaterialTextBox();
+            this.PnlResults = new System.Windows.Forms.Panel();
             this.Settings = new System.Windows.Forms.TabPage();
             this.ImageList = new System.Windows.Forms.ImageList(this.components);
             this.TcOptions.SuspendLayout();
             this.Home.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ScMain)).BeginInit();
-            this.ScMain.Panel1.SuspendLayout();
-            this.ScMain.Panel2.SuspendLayout();
-            this.ScMain.SuspendLayout();
+            this.TlpMain.SuspendLayout();
             this.TlpQuestions.SuspendLayout();
             this.TlpQuestionsDivisor.SuspendLayout();
             this.SuspendLayout();
@@ -60,77 +57,71 @@
             this.TcOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TcOptions.ImageList = this.ImageList;
             this.TcOptions.Location = new System.Drawing.Point(3, 64);
+            this.TcOptions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TcOptions.MouseState = MaterialSkin.MouseState.HOVER;
             this.TcOptions.Multiline = true;
             this.TcOptions.Name = "TcOptions";
             this.TcOptions.SelectedIndex = 0;
-            this.TcOptions.Size = new System.Drawing.Size(1394, 633);
+            this.TcOptions.Size = new System.Drawing.Size(1394, 634);
             this.TcOptions.TabIndex = 0;
             // 
             // Home
             // 
-            this.Home.Controls.Add(this.ScMain);
+            this.Home.Controls.Add(this.TlpMain);
             this.Home.ImageKey = "Home.png";
             this.Home.Location = new System.Drawing.Point(4, 39);
+            this.Home.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Home.Name = "Home";
-            this.Home.Padding = new System.Windows.Forms.Padding(3);
-            this.Home.Size = new System.Drawing.Size(1386, 590);
+            this.Home.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Home.Size = new System.Drawing.Size(1386, 591);
             this.Home.TabIndex = 0;
             this.Home.Text = "Principal";
             this.Home.UseVisualStyleBackColor = true;
             // 
-            // ScMain
+            // TlpMain
             // 
-            this.ScMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ScMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ScMain.Location = new System.Drawing.Point(3, 3);
-            this.ScMain.Name = "ScMain";
-            // 
-            // ScMain.Panel1
-            // 
-            this.ScMain.Panel1.Controls.Add(this.PnlResults);
-            // 
-            // ScMain.Panel2
-            // 
-            this.ScMain.Panel2.Controls.Add(this.TlpQuestions);
-            this.ScMain.Size = new System.Drawing.Size(1380, 584);
-            this.ScMain.SplitterDistance = 732;
-            this.ScMain.TabIndex = 3;
-            // 
-            // PnlResults
-            // 
-            this.PnlResults.BackColor = System.Drawing.Color.White;
-            this.PnlResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlResults.Location = new System.Drawing.Point(0, 0);
-            this.PnlResults.Name = "PnlResults";
-            this.PnlResults.Size = new System.Drawing.Size(730, 582);
-            this.PnlResults.TabIndex = 2;
+            this.TlpMain.ColumnCount = 2;
+            this.TlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.88406F));
+            this.TlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.11594F));
+            this.TlpMain.Controls.Add(this.TlpQuestions, 1, 0);
+            this.TlpMain.Controls.Add(this.PnlResults, 0, 0);
+            this.TlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TlpMain.Location = new System.Drawing.Point(3, 2);
+            this.TlpMain.Name = "TlpMain";
+            this.TlpMain.RowCount = 1;
+            this.TlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TlpMain.Size = new System.Drawing.Size(1380, 587);
+            this.TlpMain.TabIndex = 0;
             // 
             // TlpQuestions
             // 
+            this.TlpQuestions.AutoSize = true;
             this.TlpQuestions.BackColor = System.Drawing.Color.Transparent;
             this.TlpQuestions.ColumnCount = 1;
             this.TlpQuestions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TlpQuestions.Controls.Add(this.PnlQuestions, 0, 0);
             this.TlpQuestions.Controls.Add(this.TlpQuestionsDivisor, 0, 1);
             this.TlpQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TlpQuestions.Location = new System.Drawing.Point(0, 0);
+            this.TlpQuestions.Location = new System.Drawing.Point(788, 2);
+            this.TlpQuestions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TlpQuestions.Name = "TlpQuestions";
             this.TlpQuestions.RowCount = 2;
             this.TlpQuestions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TlpQuestions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.TlpQuestions.Size = new System.Drawing.Size(642, 582);
+            this.TlpQuestions.Size = new System.Drawing.Size(589, 583);
             this.TlpQuestions.TabIndex = 0;
             // 
             // PnlQuestions
             // 
             this.PnlQuestions.AutoScroll = true;
+            this.PnlQuestions.AutoSize = true;
             this.PnlQuestions.BackColor = System.Drawing.Color.White;
             this.PnlQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlQuestions.Location = new System.Drawing.Point(3, 3);
+            this.PnlQuestions.Location = new System.Drawing.Point(3, 2);
+            this.PnlQuestions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PnlQuestions.Name = "PnlQuestions";
-            this.PnlQuestions.Padding = new System.Windows.Forms.Padding(10);
-            this.PnlQuestions.Size = new System.Drawing.Size(636, 506);
+            this.PnlQuestions.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
+            this.PnlQuestions.Size = new System.Drawing.Size(583, 509);
             this.PnlQuestions.TabIndex = 0;
             // 
             // TlpQuestionsDivisor
@@ -144,10 +135,11 @@
             this.TlpQuestionsDivisor.Controls.Add(this.TxtQuestions, 0, 0);
             this.TlpQuestionsDivisor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TlpQuestionsDivisor.Location = new System.Drawing.Point(3, 515);
+            this.TlpQuestionsDivisor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TlpQuestionsDivisor.Name = "TlpQuestionsDivisor";
             this.TlpQuestionsDivisor.RowCount = 1;
             this.TlpQuestionsDivisor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TlpQuestionsDivisor.Size = new System.Drawing.Size(636, 64);
+            this.TlpQuestionsDivisor.Size = new System.Drawing.Size(583, 66);
             this.TlpQuestionsDivisor.TabIndex = 0;
             // 
             // BtnQuestions
@@ -161,12 +153,12 @@
             this.BtnQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnQuestions.HighEmphasis = true;
             this.BtnQuestions.Icon = ((System.Drawing.Image)(resources.GetObject("BtnQuestions.Icon")));
-            this.BtnQuestions.Location = new System.Drawing.Point(530, 6);
+            this.BtnQuestions.Location = new System.Drawing.Point(477, 6);
             this.BtnQuestions.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.BtnQuestions.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnQuestions.Name = "BtnQuestions";
             this.BtnQuestions.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.BtnQuestions.Size = new System.Drawing.Size(47, 52);
+            this.BtnQuestions.Size = new System.Drawing.Size(47, 54);
             this.BtnQuestions.TabIndex = 1;
             this.BtnQuestions.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.BtnQuestions.UseAccentColor = false;
@@ -184,12 +176,12 @@
             this.BtnClear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnClear.HighEmphasis = true;
             this.BtnClear.Icon = ((System.Drawing.Image)(resources.GetObject("BtnClear.Icon")));
-            this.BtnClear.Location = new System.Drawing.Point(585, 6);
+            this.BtnClear.Location = new System.Drawing.Point(532, 6);
             this.BtnClear.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.BtnClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.BtnClear.Size = new System.Drawing.Size(47, 52);
+            this.BtnClear.Size = new System.Drawing.Size(47, 54);
             this.BtnClear.TabIndex = 2;
             this.BtnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.BtnClear.UseAccentColor = false;
@@ -204,25 +196,37 @@
             this.TxtQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtQuestions.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.TxtQuestions.LeadingIcon = null;
-            this.TxtQuestions.Location = new System.Drawing.Point(3, 3);
-            this.TxtQuestions.MaxLength = 50;
+            this.TxtQuestions.Location = new System.Drawing.Point(3, 2);
+            this.TxtQuestions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TxtQuestions.MaxLength = 500;
             this.TxtQuestions.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtQuestions.Multiline = false;
             this.TxtQuestions.Name = "TxtQuestions";
-            this.TxtQuestions.Size = new System.Drawing.Size(520, 50);
+            this.TxtQuestions.Size = new System.Drawing.Size(467, 50);
             this.TxtQuestions.TabIndex = 0;
             this.TxtQuestions.Tag = "";
             this.TxtQuestions.Text = "";
             this.TxtQuestions.TrailingIcon = null;
             this.TxtQuestions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQuestions_KeyDown);
             // 
+            // PnlResults
+            // 
+            this.PnlResults.BackColor = System.Drawing.Color.White;
+            this.PnlResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlResults.Location = new System.Drawing.Point(3, 2);
+            this.PnlResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PnlResults.Name = "PnlResults";
+            this.PnlResults.Size = new System.Drawing.Size(779, 583);
+            this.PnlResults.TabIndex = 2;
+            // 
             // Settings
             // 
             this.Settings.ImageKey = "Settings.png";
             this.Settings.Location = new System.Drawing.Point(4, 39);
+            this.Settings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Settings.Name = "Settings";
-            this.Settings.Padding = new System.Windows.Forms.Padding(3);
-            this.Settings.Size = new System.Drawing.Size(1386, 590);
+            this.Settings.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Settings.Size = new System.Drawing.Size(1386, 591);
             this.Settings.TabIndex = 1;
             this.Settings.Text = "Configuración";
             this.Settings.UseVisualStyleBackColor = true;
@@ -243,17 +247,19 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.TcOptions;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Main";
+            this.Padding = new System.Windows.Forms.Padding(3, 64, 3, 2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChatBot Calendar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.TcOptions.ResumeLayout(false);
             this.Home.ResumeLayout(false);
-            this.ScMain.Panel1.ResumeLayout(false);
-            this.ScMain.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ScMain)).EndInit();
-            this.ScMain.ResumeLayout(false);
+            this.TlpMain.ResumeLayout(false);
+            this.TlpMain.PerformLayout();
             this.TlpQuestions.ResumeLayout(false);
+            this.TlpQuestions.PerformLayout();
             this.TlpQuestionsDivisor.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -270,9 +276,9 @@
         private System.Windows.Forms.TableLayoutPanel TlpQuestionsDivisor;
         private MaterialSkin.Controls.MaterialButton BtnQuestions;
         private MaterialSkin.Controls.MaterialButton BtnClear;
-        private MaterialSkin.Controls.MaterialTextBox TxtQuestions;
-        private System.Windows.Forms.Panel PnlQuestions;
-        private System.Windows.Forms.SplitContainer ScMain;
+        public System.Windows.Forms.Panel PnlQuestions;
+        public MaterialSkin.Controls.MaterialTextBox TxtQuestions;
+        private System.Windows.Forms.TableLayoutPanel TlpMain;
     }
 }
 

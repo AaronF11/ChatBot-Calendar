@@ -26,9 +26,13 @@ namespace ChatBot_Calendar
         // Attributes
         //---------------------------------------------------------------------
         private MaterialSkinManager materialSkinManager;
+        private Methods Methods;
         private User User;
         private Bot Bot;
-        private Methods Methods;
+        private Answer Answer;
+        private List<string> errors;
+        private List<string> all_events;
+
 
         //---------------------------------------------------------------------
         // Method: Main
@@ -38,6 +42,20 @@ namespace ChatBot_Calendar
         {
             InitializeComponent();
             SettingsScheme(1);
+            errors = new List<string>()
+            {
+                "Disculpa, no comprendí lo que preguntaste.",
+                "Perdón, no logro entender la pregunta que hiciste.",
+                "Lo siento, ¿podrías reformular tu pregunta? No la entendí bien."
+            };
+            all_events = new List<string>()
+            {
+                "Por supuesto, aquí tienes la lista de eventos programados.",
+                "Claro, te muestro los eventos que tienes agendados.",
+                "Sin problema, aquí tienes los eventos que tienes programados en tu calendario."
+            };
+
+            PnlQuestions.AutoScroll = true;
         }
 
         public void SettingsScheme(int op)
@@ -77,14 +95,33 @@ namespace ChatBot_Calendar
         {
             if(!TxtQuestions.Text.Equals(""))
             {
-                User = new User(TxtQuestions);
-                Bot = new Bot(TxtQuestions);
+                Random random = new Random();
+                string AnswerFinal;
+                string Question = TxtQuestions.Text.ToString();
+
+                Methods = new Methods(Question);
+                User = new User(Question);
+
+                Question = Question.ToLower();
+
+                switch (Question)
+                {
+                    case string s when s.Contains("todos"):
+                        AnswerFinal = all_events[random.Next(0, all_events.Count)];
+                        Bot = new Bot(AnswerFinal);
+                        PnlQuestions.Controls.Add(Bot);
+                        break;
+                    default:
+                        AnswerFinal = errors[random.Next(0, errors.Count)];
+                        Bot = new Bot(AnswerFinal);
+                        PnlQuestions.Controls.Add(Bot);
+                        break;
+                }
+
                 PnlQuestions.Controls.Add(User);
-                PnlQuestions.Controls.Add(Bot);
+
                 TxtQuestions.Text = string.Empty; 
                 TxtQuestions.Focus();
-                Methods = new Methods();
-                MessageBox.Show(Methods.Example());
             }
             else
             {
