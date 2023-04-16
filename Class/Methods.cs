@@ -62,54 +62,57 @@ namespace ChatBot_Calendar.Class
         // Method: Set_all_events
         // Description: This method is used to set all events.
         //---------------------------------------------------------------------
-        //public string Set_all_events()
-        //{
-        //    var resultado = Conn.script.set_all_events();
-
-        //    string eventos = "";
-
-        //    foreach (var key in ((dynamic)resultado).keys())
-        //    {
-        //        eventos += "Evento " + key.ToString() + ":\n";
-        //        eventos += "Fecha: " + ((dynamic)resultado)[key]["date"].ToString() + "\n";
-        //        eventos += "Título: " + ((dynamic)resultado)[key]["title"].ToString() + "\n";
-        //        eventos += "Descripción: " + ((dynamic)resultado)[key]["description"].ToString() + "\n";
-        //        eventos += "Lugar: " + ((dynamic)resultado)[key]["location"].ToString() + "\n";
-        //        eventos += "Hora: " + ((dynamic)resultado)[key]["time"].ToString() + "\n";
-        //        eventos += "Comentarios: " + ((dynamic)resultado)[key]["comments"].ToString() + "\n\n";
-        //    }
-
-        //    return eventos;
-        //}
-
-        public DataTable Set_all_events()
+        public List<string> Set_all_events()
         {
             var resultado = Conn.script.set_all_events();
 
-            DataTable table = new DataTable();
-            table.Columns.Add("Evento");
-            table.Columns.Add("Fecha");
-            table.Columns.Add("Título");
-            table.Columns.Add("Descripción");
-            table.Columns.Add("Lugar");
-            table.Columns.Add("Hora");
-            table.Columns.Add("Comentarios");
+            List<string> listaEventos = new List<string>();
 
             foreach (var key in ((dynamic)resultado).keys())
             {
-                DataRow row = table.NewRow();
-                row["Evento"] = key.ToString();
-                row["Fecha"] = ((dynamic)resultado)[key]["date"].ToString();
-                row["Título"] = ((dynamic)resultado)[key]["title"].ToString();
-                row["Descripción"] = ((dynamic)resultado)[key]["description"].ToString();
-                row["Lugar"] = ((dynamic)resultado)[key]["location"].ToString();
-                row["Hora"] = ((dynamic)resultado)[key]["time"].ToString();
-                row["Comentarios"] = ((dynamic)resultado)[key]["comments"].ToString();
-                table.Rows.Add(row);
+                string evento = "";
+                evento += "Evento " + key.ToString() + ":\n";
+                evento += "Fecha: " + ((dynamic)resultado)[key]["date"].ToString() + "\n";
+                evento += "Título: " + ((dynamic)resultado)[key]["title"].ToString() + "\n";
+                evento += "Descripción: " + ((dynamic)resultado)[key]["description"].ToString() + "\n";
+                evento += "Lugar: " + ((dynamic)resultado)[key]["location"].ToString() + "\n";
+                evento += "Hora: " + ((dynamic)resultado)[key]["time"].ToString() + "\n";
+                evento += "Comentarios: " + ((dynamic)resultado)[key]["comments"].ToString() + "\n\n";
+                listaEventos.Add(evento);
             }
 
-            return table;
+            return listaEventos;
         }
+
+
+        //public DataTable Set_all_events()
+        //{
+        //    var resultado = Conn.script.set_all_events();
+
+        //    DataTable table = new DataTable();
+        //    table.Columns.Add("Evento");
+        //    table.Columns.Add("Fecha");
+        //    table.Columns.Add("Título");
+        //    table.Columns.Add("Descripción");
+        //    table.Columns.Add("Lugar");
+        //    table.Columns.Add("Hora");
+        //    table.Columns.Add("Comentarios");
+
+        //    foreach (var key in ((dynamic)resultado).keys())
+        //    {
+        //        DataRow row = table.NewRow();
+        //        row["Evento"] = key.ToString();
+        //        row["Fecha"] = ((dynamic)resultado)[key]["date"].ToString();
+        //        row["Título"] = ((dynamic)resultado)[key]["title"].ToString();
+        //        row["Descripción"] = ((dynamic)resultado)[key]["description"].ToString();
+        //        row["Lugar"] = ((dynamic)resultado)[key]["location"].ToString();
+        //        row["Hora"] = ((dynamic)resultado)[key]["time"].ToString();
+        //        row["Comentarios"] = ((dynamic)resultado)[key]["comments"].ToString();
+        //        table.Rows.Add(row);
+        //    }
+
+        //    return table;
+        //}
 
 
         //---------------------------------------------------------------------

@@ -93,7 +93,7 @@ namespace ChatBot_Calendar
         //---------------------------------------------------------------------
         private void BtnQuestions_Click(object sender, EventArgs e)
         {
-            if(!TxtQuestions.Text.Equals(""))
+            if (!TxtQuestions.Text.Equals(""))
             {
                 Random random = new Random();
                 string AnswerFinal;
@@ -110,6 +110,12 @@ namespace ChatBot_Calendar
                         AnswerFinal = all_events[random.Next(0, all_events.Count)];
                         Bot = new Bot(AnswerFinal);
                         PnlQuestions.Controls.Add(Bot);
+                        List<string> eventos = Methods.Set_all_events();
+                        foreach (string evento in eventos)
+                        {
+                            Answer = new Answer(evento);
+                            PnlResults.Controls.Add(Answer);
+                        }
                         break;
                     default:
                         AnswerFinal = errors[random.Next(0, errors.Count)];

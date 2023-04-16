@@ -211,6 +211,8 @@
             // 
             // PnlResults
             // 
+            this.PnlResults.AutoScroll = true;
+            this.PnlResults.AutoSize = true;
             this.PnlResults.BackColor = System.Drawing.Color.White;
             this.PnlResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlResults.Location = new System.Drawing.Point(3, 2);

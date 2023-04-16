@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.LblAnswers = new MaterialSkin.Controls.MaterialLabel();
+            this.LblAnswer = new MaterialSkin.Controls.MaterialLabel();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // LblAnswers
+            // LblAnswer
             // 
-            this.LblAnswers.Depth = 0;
-            this.LblAnswers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblAnswers.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblAnswers.Location = new System.Drawing.Point(0, 0);
-            this.LblAnswers.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblAnswers.Name = "LblAnswers";
-            this.LblAnswers.Size = new System.Drawing.Size(726, 578);
-            this.LblAnswers.TabIndex = 0;
-            this.LblAnswers.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.LblAnswer.Depth = 0;
+            this.LblAnswer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LblAnswer.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblAnswer.Location = new System.Drawing.Point(0, 0);
+            this.LblAnswer.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblAnswer.Name = "LblAnswer";
+            this.LblAnswer.Size = new System.Drawing.Size(872, 200);
+            this.LblAnswer.TabIndex = 0;
+            this.LblAnswer.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Timer
             // 
@@ -52,18 +52,19 @@
             // 
             // Answer
             // 
+            this.AutoScroll = true;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Controls.Add(this.LblAnswers);
+            this.Controls.Add(this.LblAnswer);
             this.Name = "Answer";
-            this.Size = new System.Drawing.Size(726, 578);
-            //this.Load += new System.EventHandler(this.Answer_Load);
+            this.Size = new System.Drawing.Size(872, 200);
+            this.Load += new System.EventHandler(this.Answer_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialLabel LblAnswers;
+        private MaterialSkin.Controls.MaterialLabel LblAnswer;
         private System.Windows.Forms.Timer Timer;
     }
 }

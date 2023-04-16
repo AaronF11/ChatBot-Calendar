@@ -36,7 +36,6 @@ namespace ChatBot_Calendar.Controls
             InitializeComponent();
             Complete = Text;
             Dock = DockStyle.Top;
-            AutoScroll = true;
         }
 
         //---------------------------------------------------------------------
