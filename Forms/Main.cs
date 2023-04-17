@@ -11,6 +11,8 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using ChatBot_Calendar.Controls;
 using ChatBot_Calendar.Class;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Text.RegularExpressions;
 
 namespace ChatBot_Calendar
 {
@@ -95,9 +97,12 @@ namespace ChatBot_Calendar
         {
             if (!TxtQuestions.Text.Equals(""))
             {
+                PnlResults.Controls.Clear();
+
                 Random random = new Random();
                 string AnswerFinal;
                 string Question = TxtQuestions.Text.ToString();
+                List<string> eventos;
 
                 Methods = new Methods(Question);
                 User = new User(Question);
@@ -106,11 +111,33 @@ namespace ChatBot_Calendar
 
                 switch (Question)
                 {
-                    case string s when s.Contains("todos"):
+                    case string s when s.Contains("todos") || s.Contains("todas"):
                         AnswerFinal = all_events[random.Next(0, all_events.Count)];
                         Bot = new Bot(AnswerFinal);
                         PnlQuestions.Controls.Add(Bot);
-                        List<string> eventos = Methods.Set_all_events();
+                        eventos = Methods.Set_all_events();
+                        foreach (string evento in eventos)
+                        {
+                            Answer = new Answer(evento);
+                            PnlResults.Controls.Add(Answer);
+                        }
+                        break;
+                    case string s when s.Contains("hoy") || s.Contains("del dia"):
+                        AnswerFinal = all_events[random.Next(0, all_events.Count)];
+                        Bot = new Bot(AnswerFinal);
+                        PnlQuestions.Controls.Add(Bot);
+                        eventos = Methods.Set_today_events();
+                        foreach (string evento in eventos)
+                        {
+                            Answer = new Answer(evento);
+                            PnlResults.Controls.Add(Answer);
+                        }
+                        break;
+                    case string s when s.Contains("fecha") || s.Contains("el"):
+                        AnswerFinal = all_events[random.Next(0, all_events.Count)];
+                        Bot = new Bot(AnswerFinal);
+                        PnlQuestions.Controls.Add(Bot);
+                        eventos = Methods.Set_date_events(TxtQuestions.Text);
                         foreach (string evento in eventos)
                         {
                             Answer = new Answer(evento);

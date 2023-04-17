@@ -84,36 +84,57 @@ namespace ChatBot_Calendar.Class
             return listaEventos;
         }
 
+        //---------------------------------------------------------------------
+        // Method: Set_today_events
+        // Description: This method is used to set all today events.
+        //---------------------------------------------------------------------
+        public List<string> Set_today_events()
+        {
+            var resultado = Conn.script.set_today_events();
 
-        //public DataTable Set_all_events()
-        //{
-        //    var resultado = Conn.script.set_all_events();
+            List<string> listaEventos = new List<string>();
 
-        //    DataTable table = new DataTable();
-        //    table.Columns.Add("Evento");
-        //    table.Columns.Add("Fecha");
-        //    table.Columns.Add("Título");
-        //    table.Columns.Add("Descripción");
-        //    table.Columns.Add("Lugar");
-        //    table.Columns.Add("Hora");
-        //    table.Columns.Add("Comentarios");
+            foreach (var key in ((dynamic)resultado).keys())
+            {
+                string evento = "";
+                evento += "Evento " + key.ToString() + ":\n";
+                evento += "Fecha: " + ((dynamic)resultado)[key]["date"].ToString() + "\n";
+                evento += "Título: " + ((dynamic)resultado)[key]["title"].ToString() + "\n";
+                evento += "Descripción: " + ((dynamic)resultado)[key]["description"].ToString() + "\n";
+                evento += "Lugar: " + ((dynamic)resultado)[key]["location"].ToString() + "\n";
+                evento += "Hora: " + ((dynamic)resultado)[key]["time"].ToString() + "\n";
+                evento += "Comentarios: " + ((dynamic)resultado)[key]["comments"].ToString() + "\n\n";
+                listaEventos.Add(evento);
+            }
 
-        //    foreach (var key in ((dynamic)resultado).keys())
-        //    {
-        //        DataRow row = table.NewRow();
-        //        row["Evento"] = key.ToString();
-        //        row["Fecha"] = ((dynamic)resultado)[key]["date"].ToString();
-        //        row["Título"] = ((dynamic)resultado)[key]["title"].ToString();
-        //        row["Descripción"] = ((dynamic)resultado)[key]["description"].ToString();
-        //        row["Lugar"] = ((dynamic)resultado)[key]["location"].ToString();
-        //        row["Hora"] = ((dynamic)resultado)[key]["time"].ToString();
-        //        row["Comentarios"] = ((dynamic)resultado)[key]["comments"].ToString();
-        //        table.Rows.Add(row);
-        //    }
+            return listaEventos;
+        }
 
-        //    return table;
-        //}
+        //---------------------------------------------------------------------
+        // Method: Set_date_events
+        // Description: This method is used to set all events of the date.
+        //---------------------------------------------------------------------
+        public List<string> Set_date_events(string date)
+        {
+            var resultado = Conn.script.set_date_events(date);
 
+            List<string> listaEventos = new List<string>();
+
+            foreach (var key in ((dynamic)resultado).keys())
+            {
+                string evento = "";
+                evento += "Evento " + key.ToString() + ":\n";
+                evento += "Fecha: " + ((dynamic)resultado)[key]["date"].ToString() + "\n";
+                evento += "Título: " + ((dynamic)resultado)[key]["title"].ToString() + "\n";
+                evento += "Descripción: " + ((dynamic)resultado)[key]["description"].ToString() + "\n";
+                evento += "Lugar: " + ((dynamic)resultado)[key]["location"].ToString() + "\n";
+                evento += "Hora: " + ((dynamic)resultado)[key]["time"].ToString() + "\n";
+                evento += "Comentarios: " + ((dynamic)resultado)[key]["comments"].ToString() + "\n\n";
+                listaEventos.Add(evento);
+            }
+
+            return listaEventos;
+        }
 
         //---------------------------------------------------------------------
         // Method: Get_last_key

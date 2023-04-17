@@ -44,7 +44,7 @@ namespace ChatBot_Calendar.Controls
         //---------------------------------------------------------------------
         private void Answer_Load(object sender, EventArgs e)
         {
-            Timer.Interval = 20;
+            Timer.Interval = 10;
             Timer.Start();
         }
 
