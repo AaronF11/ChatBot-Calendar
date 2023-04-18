@@ -114,4 +114,7 @@ def set_date_events(date_str):
         if event['date'] == date:
             events_date[event_id] = event
 
-    return events_date
+    if not events_date:
+        return "No hay eventos en la fecha especificada."
+    else:
+        return events_date

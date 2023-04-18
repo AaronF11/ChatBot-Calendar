@@ -120,17 +120,24 @@ namespace ChatBot_Calendar.Class
 
             List<string> listaEventos = new List<string>();
 
-            foreach (var key in ((dynamic)resultado).keys())
+            if (resultado != "No hay eventos en la fecha especificada.")
             {
-                string evento = "";
-                evento += "Evento " + key.ToString() + ":\n";
-                evento += "Fecha: " + ((dynamic)resultado)[key]["date"].ToString() + "\n";
-                evento += "Título: " + ((dynamic)resultado)[key]["title"].ToString() + "\n";
-                evento += "Descripción: " + ((dynamic)resultado)[key]["description"].ToString() + "\n";
-                evento += "Lugar: " + ((dynamic)resultado)[key]["location"].ToString() + "\n";
-                evento += "Hora: " + ((dynamic)resultado)[key]["time"].ToString() + "\n";
-                evento += "Comentarios: " + ((dynamic)resultado)[key]["comments"].ToString() + "\n\n";
-                listaEventos.Add(evento);
+                foreach (var key in ((dynamic)resultado).keys())
+                {
+                    string evento = "";
+                    evento += "Evento " + key.ToString() + ":\n";
+                    evento += "Fecha: " + ((dynamic)resultado)[key]["date"].ToString() + "\n";
+                    evento += "Título: " + ((dynamic)resultado)[key]["title"].ToString() + "\n";
+                    evento += "Descripción: " + ((dynamic)resultado)[key]["description"].ToString() + "\n";
+                    evento += "Lugar: " + ((dynamic)resultado)[key]["location"].ToString() + "\n";
+                    evento += "Hora: " + ((dynamic)resultado)[key]["time"].ToString() + "\n";
+                    evento += "Comentarios: " + ((dynamic)resultado)[key]["comments"].ToString() + "\n\n";
+                    listaEventos.Add(evento);
+                }
+            }
+            else
+            {
+                listaEventos.Add(resultado);
             }
 
             return listaEventos;
