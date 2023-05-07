@@ -116,6 +116,7 @@
             this.PnlQuestions.AutoScroll = true;
             this.PnlQuestions.AutoSize = true;
             this.PnlQuestions.BackColor = System.Drawing.Color.White;
+            this.PnlQuestions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PnlQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlQuestions.Location = new System.Drawing.Point(3, 2);
             this.PnlQuestions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -153,12 +154,12 @@
             this.BtnQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnQuestions.HighEmphasis = true;
             this.BtnQuestions.Icon = ((System.Drawing.Image)(resources.GetObject("BtnQuestions.Icon")));
-            this.BtnQuestions.Location = new System.Drawing.Point(477, 6);
-            this.BtnQuestions.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BtnQuestions.Location = new System.Drawing.Point(478, 6);
+            this.BtnQuestions.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.BtnQuestions.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnQuestions.Name = "BtnQuestions";
             this.BtnQuestions.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.BtnQuestions.Size = new System.Drawing.Size(47, 54);
+            this.BtnQuestions.Size = new System.Drawing.Size(45, 54);
             this.BtnQuestions.TabIndex = 1;
             this.BtnQuestions.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.BtnQuestions.UseAccentColor = false;
@@ -176,12 +177,12 @@
             this.BtnClear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnClear.HighEmphasis = true;
             this.BtnClear.Icon = ((System.Drawing.Image)(resources.GetObject("BtnClear.Icon")));
-            this.BtnClear.Location = new System.Drawing.Point(532, 6);
-            this.BtnClear.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BtnClear.Location = new System.Drawing.Point(533, 6);
+            this.BtnClear.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.BtnClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.BtnClear.Size = new System.Drawing.Size(47, 54);
+            this.BtnClear.Size = new System.Drawing.Size(45, 54);
             this.BtnClear.TabIndex = 2;
             this.BtnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.BtnClear.UseAccentColor = false;
@@ -214,6 +215,7 @@
             this.PnlResults.AutoScroll = true;
             this.PnlResults.AutoSize = true;
             this.PnlResults.BackColor = System.Drawing.Color.White;
+            this.PnlResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PnlResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlResults.Location = new System.Drawing.Point(3, 2);
             this.PnlResults.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -228,7 +230,7 @@
             this.Settings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Settings.Name = "Settings";
             this.Settings.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Settings.Size = new System.Drawing.Size(1386, 591);
+            this.Settings.Size = new System.Drawing.Size(1385, 591);
             this.Settings.TabIndex = 1;
             this.Settings.Text = "Configuración";
             this.Settings.UseVisualStyleBackColor = true;

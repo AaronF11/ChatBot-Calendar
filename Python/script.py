@@ -48,6 +48,14 @@ events = {
         "time": "02:00 PM",
         "comments": "Aun no hay comentarios"
         },
+    "6": {
+        "date": "23/04/2023",
+        "title": "Conferencia de tecnologia",
+        "description": "Conferencia sobre tecnologia de punta",
+        "location": "Sala de conferencias 6",
+        "time": "03:00 PM",
+        "comments": "Aun no hay comentarios"
+        },
 }
 
 #------------------------------------------------------------------------------#
@@ -118,3 +126,32 @@ def set_date_events(date_str):
         return "No hay eventos en la fecha especificada."
     else:
         return events_date
+
+#----------------------------#
+# Agregar un nuevo evento al diccionario events
+#----------------------------#
+def add_event_to_events(date, title, description, location, time, comments):
+    new_event_id = str(len(events) + 1)
+    
+    new_event = {
+        "date": date,
+        "title": title,
+        "description": description,
+        "location": location,
+        "time": time,
+        "comments": comments
+    }
+    
+    events[new_event_id] = new_event
+    print(events)
+    return "Evento agregado correctamente"
+
+#----------------------------#
+# Agregar un nuevo comentario al diccionario events
+#----------------------------#
+def add_comment(title, comment):
+    if title in events:
+        events[title]['comments'].append(comment)
+        return "Comentario agregado correctamente"
+    else:
+        return "No existe un evento con ese titulo"

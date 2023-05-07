@@ -32,6 +32,8 @@ namespace ChatBot_Calendar
         private User User;
         private Bot Bot;
         private Answer Answer;
+        private Event Event;
+        private Comment Comment;
         private List<string> errors;
         private List<string> all_events;
 
@@ -58,6 +60,8 @@ namespace ChatBot_Calendar
             };
 
             PnlQuestions.AutoScroll = true;
+            Methods = new Methods("");
+            Methods.Document();
         }
 
         public void SettingsScheme(int op)
@@ -132,6 +136,11 @@ namespace ChatBot_Calendar
                             Answer = new Answer(evento);
                             PnlResults.Controls.Add(Answer);
                         }
+                        if (PnlResults.Controls.Count == 0)
+                        {
+                            Answer = new Answer("No hay eventos programados hoy");
+                            PnlResults.Controls.Add(Answer);
+                        }
                         break;
                     case string s when s.Contains("fecha") || s.Contains("el"):
                         AnswerFinal = all_events[random.Next(0, all_events.Count)];
@@ -143,9 +152,38 @@ namespace ChatBot_Calendar
                             Answer = new Answer(evento);
                             PnlResults.Controls.Add(Answer);
                         }
+                        if (PnlResults.Controls.Count == 0)
+                        {
+                            Answer = new Answer("No hay eventos programados para esa fecha");
+                            PnlResults.Controls.Add(Answer);
+                        }
+                        break;
+                    case string s when s.Contains("crear evento") || s.Contains("agregar evento"):
+                        Bot = new Bot("¿Qué evento deseas agregar?");
+                        PnlQuestions.Controls.Add(Bot);
+                        Event = new Event();
+                        PnlResults.Controls.Add(Event);
+                        break;
+                    case string s when s.Contains("crear comentario") || s.Contains("agregar comentario"):
+                        Bot = new Bot("¿Qué evento deseas agregar?");
+                        PnlQuestions.Controls.Add(Bot);
+                        Comment = new Comment();
+                        PnlResults.Controls.Add(Comment);
+                        break;
+                    case string s when s.Contains("ayuda"):
+                        Bot = new Bot("Hola, soy tu asistente virtual, ¿en qué te puedo ayudar?");
+                        PnlQuestions.Controls.Add(Bot);
+                        eventos = Methods.Help();
+                        foreach (string evento in eventos)
+                        {
+                            Answer = new Answer(evento);
+                            PnlResults.Controls.Add(Answer);
+                        }
                         break;
                     default:
                         AnswerFinal = errors[random.Next(0, errors.Count)];
+                        Bot = new Bot("Teclea \"ayuda\" para recibir más orientación.");
+                        PnlQuestions.Controls.Add(Bot);
                         Bot = new Bot(AnswerFinal);
                         PnlQuestions.Controls.Add(Bot);
                         break;
