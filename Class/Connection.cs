@@ -13,7 +13,6 @@ namespace ChatBot_Calendar.Class
     // Class: Connection
     // Description: This class is used to create a connection with the script
     // of python.
-    // Author: Aarón Flores Pasos
     // Date: 27/03/2023
     //-------------------------------------------------------------------------
     public class Connection

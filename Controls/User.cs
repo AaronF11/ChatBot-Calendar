@@ -16,7 +16,6 @@ namespace ChatBot_Calendar.Controls
     // Class: User
     // Description: This class is used to create a user control that will be used
     // to display the user's questions.
-    // Author: Aarón Flores Pasos
     // Date: 26/03/2023
     //-------------------------------------------------------------------------
     public partial class User : UserControl
@@ -55,16 +54,25 @@ namespace ChatBot_Calendar.Controls
         //---------------------------------------------------------------------
         private void Timer_Tick(object sender, EventArgs e)
         {
-            string Parcial = Complete.Substring(0, PosActual);
-
-            LblQuestion.Text = Parcial;
-
-            PosActual++;
-
-            if (PosActual > Complete.Length)
+            try
             {
-                Timer.Stop();
+                string Parcial = Complete.Substring(0, PosActual);
+
+                LblQuestion.Text = Parcial;
+
+                PosActual++;
+
+                if (PosActual > Complete.Length)
+                {
+                    Timer.Stop();
+                }
             }
+            catch (Exception)
+            {
+
+                
+            }
+            
         }
     }
 }

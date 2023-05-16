@@ -9,7 +9,7 @@ import re
 #----------------------------#
 events = {
     "1": {
-        "date": str(datetime.datetime.today().strftime('%d/%m/%y')),
+        "date": str(datetime.datetime.today().strftime('%d/%m/%Y')),
         "title": "Conferencia de tecnologia",
         "description": "Conferencia sobre tecnologia de punta",
         "location": "Sala de conferencias 1",
@@ -17,7 +17,7 @@ events = {
         "comments": "Aun no hay comentarios"
         },
     "2": {
-        "date": str(datetime.datetime.today().strftime('%d/%m/%y')),
+        "date": str(datetime.datetime.today().strftime('%d/%m/%Y')),
         "title": "Conferencia de tecnologia",
         "description": "Conferencia sobre tecnologia de punta",
         "location": "Sala de conferencias 2",
@@ -25,7 +25,7 @@ events = {
         "comments": "Aun no hay comentarios"
         },
     "3": {
-        "date": str(datetime.datetime.today().strftime('%d/%m/%y')),
+        "date": str(datetime.datetime.today().strftime('%d/%m/%Y')),
         "title": "Conferencia de tecnologia",
         "description": "Conferencia sobre tecnologia de punta",
         "location": "Sala de conferencias 3",
@@ -33,7 +33,7 @@ events = {
         "comments": "Aun no hay comentarios"
         },
     "4": {
-        "date": str(datetime.datetime.today().strftime('%d/%m/%y')),
+        "date": str(datetime.datetime.today().strftime('%d/%m/%Y')),
         "title": "Conferencia de tecnologia",
         "description": "Conferencia sobre tecnologia de punta",
         "location": "Sala de conferencias 4",
@@ -41,7 +41,7 @@ events = {
         "comments": "Aun no hay comentarios"
         },
     "5": {
-        "date": str(datetime.datetime.today().strftime('%d/%m/%y')),
+        "date": str(datetime.datetime.today().strftime('%d/%m/%Y')),
         "title": "Conferencia de tecnologia",
         "description": "Conferencia sobre tecnologia de punta",
         "location": "Sala de conferencias 5",

@@ -1,7 +1,10 @@
 ﻿using ChatBot_Calendar.Controls;
 using IronPython.Runtime;
 using MaterialSkin.Controls;
+using MimeKit;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using Org.BouncyCastle.Cms;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,12 +14,20 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static IronPython.SQLite.PythonSQLite;
 using static Microsoft.IO.RecyclableMemoryStreamManager;
+using MimeKit;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace ChatBot_Calendar.Class
 {
@@ -24,7 +35,6 @@ namespace ChatBot_Calendar.Class
     // Class: Methods
     // Description: This class is use the connection with the script
     // of python to execute the methods.
-    // Author: Aarón Flores Pasos
     // Date: 27/03/2023
     //-------------------------------------------------------------------------
     public class Methods
@@ -106,23 +116,35 @@ namespace ChatBot_Calendar.Class
                         worksheet.Cells[1, 6].Value = "Hora";
                         worksheet.Cells[1, 7].Value = "Comentarios";
                         worksheet.Cells[1, 1, 1, 7].Style.Font.Bold = true;
+                        worksheet.Cells[1, 1, 1, 7].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        worksheet.Cells[1, 1, 1, 7].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(79, 129, 189));
+                        worksheet.Cells[1, 1, 1, 7].Style.Font.Color.SetColor(Color.White);
+
                         worksheet.Cells[1, 1, 1, 7].AutoFitColumns();
                         worksheet.View.FreezePanes(2, 1);
                         package.Save();
                     }
 
-                    int row = worksheet.Dimension.End.Row + 1;
+                    var x = ((dynamic)resultado).keys().Count;
+                    int row = x + 1;
                     foreach (var key in ((dynamic)resultado).keys())
                     {
                         var evento = ((dynamic)resultado)[key];
-                        worksheet.Cells[row, 1].Value = key.ToString();
+                        worksheet.Cells[row, 1].Value = Convert.ToInt32(key);
                         worksheet.Cells[row, 2].Value = evento["date"].ToString();
                         worksheet.Cells[row, 3].Value = evento["title"].ToString();
                         worksheet.Cells[row, 4].Value = evento["description"].ToString();
                         worksheet.Cells[row, 5].Value = evento["location"].ToString();
                         worksheet.Cells[row, 6].Value = evento["time"].ToString();
                         worksheet.Cells[row, 7].Value = evento["comments"].ToString();
-                        row++;
+                        worksheet.Cells[row, 1, row, 7].Style.Font.Size = 12;
+                        worksheet.Row(row).Height = 20;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, row, row, 7].AutoFitColumns();
+                        row--;
                     }
 
                     package.Save();
@@ -182,7 +204,6 @@ namespace ChatBot_Calendar.Class
             return listaEventos;
         }
 
-
         //---------------------------------------------------------------------
         // Method: Set_today_events
         // Description: This method is used to set all today events.
@@ -201,7 +222,7 @@ namespace ChatBot_Calendar.Class
                 for (int row = start.Row + 1; row <= end.Row; row++)
                 {
                     var fechaStr = worksheet.Cells[row, 2].Value.ToString();
-                    string today = DateTime.Today.ToString("dd/MM/yy");
+                    string today = DateTime.Today.ToString("dd/MM/yyyy");
                     if (today == fechaStr)
                     {
                         var evento = new Evento()
@@ -302,29 +323,6 @@ namespace ChatBot_Calendar.Class
             return listaEventos;
         }
 
-
-        //---------------------------------------------------------------------
-        // Method: Set_today_events
-        // Description: This method is used to set all today events.
-        //---------------------------------------------------------------------
-        public List<string> Help()
-        {
-            string Op = "";
-            Op += "Estas son las opciones que puedes utilizar para preguntar sobre fechas y eventos:\n";
-            Op += "- \"Dame todos los eventos\" ó \"Dame todas las fehas con evento agendada\"\n";
-            Op += "- \"Dame todos los eventos de hoy\" ó \"Dame todos los eventos del dia\"\n";
-            Op += "- \"¿Qué eventos hay en la fecha DD/MM/AAAA?\" ó \"¿Qué eventos hay el DD/MM/AAAA?\"\n";
-            Op += "- \"Agregar evento\" ó \"Agendar evento\"\n";
-            Op += "- \"Agregar comentario\" ó \"Incluir comentario\"\n";
-
-            List<string> args = new List<string>
-            {
-                Op
-            };
-
-            return args;
-        }
-
         //---------------------------------------------------------------------
         // Method: AddNewEvent
         // Description: This method is used to add a new event.
@@ -348,8 +346,89 @@ namespace ChatBot_Calendar.Class
                 worksheet.Cells[newRow, 5].Value = location;
                 worksheet.Cells[newRow, 6].Value = time;
                 worksheet.Cells[newRow, 7].Value = comments;
+                worksheet.Cells[newRow, 1, newRow, 7].Style.Font.Size = 12;
+                worksheet.Row(newRow).Height = 20;
+                worksheet.Cells[newRow, 1, newRow, 7].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                worksheet.Cells[newRow, 1, newRow, 7].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                worksheet.Cells[newRow, 1, newRow, 7].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                worksheet.Cells[newRow, 1, newRow, 7].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                worksheet.Cells[newRow, newRow, newRow, 7].AutoFitColumns();
 
                 package.Save();
+            }
+        }
+
+        //---------------------------------------------------------------------
+        // Method: ModifyEvent
+        // Description: This method is used to modify an event.
+        //---------------------------------------------------------------------
+        public bool ModifyEvent(int eventNumber, string date, string title, string description, string location, string time, string comments)
+        {
+            var Url = @"..\..\Doc\Eventos.xlsx";
+            using (var package = new ExcelPackage(new FileInfo(Url)))
+            {
+                var worksheet = package.Workbook.Worksheets[0];
+                var start = worksheet.Dimension.Start;
+                var end = worksheet.Dimension.End;
+
+                for (int row = start.Row + 1; row <= end.Row; row++)
+                {
+                    if (int.Parse(worksheet.Cells[row, 1].Value.ToString()) == eventNumber)
+                    {
+                        worksheet.Cells[row, 2].Value = date;
+                        worksheet.Cells[row, 3].Value = title;
+                        worksheet.Cells[row, 4].Value = description;
+                        worksheet.Cells[row, 5].Value = location;
+                        worksheet.Cells[row, 6].Value = time;
+                        worksheet.Cells[row, 7].Value = comments;
+                        worksheet.Cells[row, 1, row, 7].Style.Font.Size = 12;
+                        worksheet.Row(row).Height = 20;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, row, row, 7].AutoFitColumns();
+
+                        package.Save();
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        //---------------------------------------------------------------------
+        // Method: DeleteEvent
+        // Description: This method is used to delete an event.
+        //---------------------------------------------------------------------
+        public bool DeleteEvent(int eventNumber)
+        {
+            var Url = @"..\..\Doc\Eventos.xlsx";
+            using (var package = new ExcelPackage(new FileInfo(Url)))
+            {
+                var worksheet = package.Workbook.Worksheets[0];
+                var start = worksheet.Dimension.Start;
+                var end = worksheet.Dimension.End;
+
+                for (int row = start.Row + 1; row <= end.Row; row++)
+                {
+                    if (int.Parse(worksheet.Cells[row, 1].Value.ToString()) == eventNumber)
+                    {
+                        worksheet.DeleteRow(row, 1);
+                        worksheet.Cells[row, 1, row, 7].Style.Font.Size = 12;
+                        worksheet.Row(row).Height = 20;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, 1, row, 7].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[row, row, row, 7].AutoFitColumns();
+                        package.Save();
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
 
@@ -359,8 +438,8 @@ namespace ChatBot_Calendar.Class
         //---------------------------------------------------------------------
         public bool AddNewComment(int eventNumber, string comment)
         {
-            var url = @"..\..\Doc\Eventos.xlsx";
-            using (var package = new ExcelPackage(new FileInfo(url)))
+            var Url = @"..\..\Doc\Eventos.xlsx";
+            using (var package = new ExcelPackage(new FileInfo(Url)))
             {
                 var worksheet = package.Workbook.Worksheets[0];
                 var start = worksheet.Dimension.Start;
@@ -371,41 +450,58 @@ namespace ChatBot_Calendar.Class
                     if (int.Parse(worksheet.Cells[row, 1].Value.ToString()) == eventNumber)
                     {
                         worksheet.Cells[row, 7].Value = comment;
-                        break;
-                    }
-                    else
-                    {
-                        return false;
+                        package.Save();
+                        return true;
                     }
                 }
 
-                package.Save();
+                return false;
             }
-            return true;
         }
 
-
-
         //---------------------------------------------------------------------
-        // Method: Get_last_key
-        // Description: This method is used to get the last key of the dict
+        // Method: Help
+        // Description: This method is used to help the user's.
         //---------------------------------------------------------------------
-        public int Get_last_key()
+        public List<string> Help()
         {
-            var resultado = Conn.script.set_all_events();
+            string Op = "";
+            Op += "Estas son las opciones que puedes utilizar para preguntar sobre fechas y eventos:\n";
+            Op += "- \"Dame todos los eventos\" ó \"Dame todas las fehas con evento agendado\"\n";
+            Op += "- \"Dame los eventos de hoy\" ó \"Dame los eventos del dia\"\n";
+            Op += "- \"¿Qué eventos hay en la fecha DD/MM/AAAA?\" ó \"¿Qué eventos hay el DD/MM/AAAA?\"\n";
+            Op += "- \"Agregar evento\" ó \"Crear evento\"\n";
+            Op += "- \"Agregar comentario\" ó \"Crear comentario\"\n";
 
-            int lastKey = -1;
-
-            foreach (var key in ((dynamic)resultado).keys())
+            List<string> args = new List<string>
             {
-                int currentKey = Convert.ToInt32(key.ToString());
-                if (currentKey > lastKey)
-                {
-                    lastKey = currentKey;
-                }
+                Op
+            };
+
+            return args;
+        }
+
+        //---------------------------------------------------------------------
+        // Method: SendWhatsApp
+        // Description: This method is used to send a message to WhatsApp.
+        // State: *In production*
+        //---------------------------------------------------------------------
+        public void SendWhatsApp()
+        {
+            var accountSid = "ACf7f398b17e15b4bf54a7ead081169300";
+            var authToken = "a6ebbd5b4a690eee7bfebca916c3b7fa";
+            TwilioClient.Init(accountSid, authToken);
+
+            var messageOptions = new CreateMessageOptions(
+              new PhoneNumber("whatsapp:+5213223624573"));
+            messageOptions.From = new PhoneNumber("whatsapp:+14155238886");
+            foreach (var item in Set_all_events())
+            {
+                messageOptions.Body += item;
             }
 
-            return lastKey;
+            var message = MessageResource.Create(messageOptions);
+            MessageBox.Show(message.ToString());
         }
     }
 }

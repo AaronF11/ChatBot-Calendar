@@ -230,7 +230,7 @@
             this.Settings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Settings.Name = "Settings";
             this.Settings.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Settings.Size = new System.Drawing.Size(1385, 591);
+            this.Settings.Size = new System.Drawing.Size(1386, 591);
             this.Settings.TabIndex = 1;
             this.Settings.Text = "Configuración";
             this.Settings.UseVisualStyleBackColor = true;

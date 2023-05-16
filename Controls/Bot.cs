@@ -16,7 +16,6 @@ namespace ChatBot_Calendar.Controls
     // Class: Bot
     // Description: This class is used to create a user control that will be used
     // to display the user's questions.
-    // Author: Aarón Flores Pasos
     // Date: 26/03/2023
     //-------------------------------------------------------------------------
     public partial class Bot : UserControl

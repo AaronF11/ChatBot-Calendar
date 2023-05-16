@@ -18,7 +18,6 @@ namespace ChatBot_Calendar.Controls
     // Class: Event
     // Description: This class is used to create a user control that will be used
     // to create a new event.
-    // Author: Aarón Flores Pasos
     // Date: 23/04/2023
     //-------------------------------------------------------------------------
     public partial class Event : UserControl
@@ -57,6 +56,12 @@ namespace ChatBot_Calendar.Controls
                 Methods.AddNewEvent(TxtDate.Text, TxtTitle.Text, TxtDescription.Text, TxtLocation.Text, TxtHour.Text, TxtComments.Text);
                 MaterialMessageBox.Show("Evento registrado exitosamente", "Aviso");
             }
+            TxtDate.Text = string.Empty;
+            TxtTitle.Text = string.Empty;
+            TxtDescription.Text = string.Empty;
+            TxtLocation.Text = string.Empty;
+            TxtHour.Text = string.Empty;
+            TxtComments.Text = string.Empty;
         }
     }
 }

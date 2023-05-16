@@ -16,7 +16,6 @@ namespace ChatBot_Calendar.Controls
     // Class: Comment
     // Description: This class is used to create a user control that will be used
     // to create a new comment.
-    // Author: Aarón Flores Pasos
     // Date: 23/04/2023
     //-------------------------------------------------------------------------
     public partial class Comment : UserControl
@@ -60,6 +59,8 @@ namespace ChatBot_Calendar.Controls
                     MaterialMessageBox.Show("Error al registrar el comentario, evento no encontrado", "Aviso");
                 }
             }
+            TxtId.Text = string.Empty;
+            TxtComments.Text = string.Empty;
         }
     }
 }

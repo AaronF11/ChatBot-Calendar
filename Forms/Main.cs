@@ -19,7 +19,6 @@ namespace ChatBot_Calendar
     //-------------------------------------------------------------------------
     // Class: Main
     // Description: This class is the main form of the application.
-    // Author: Aarón Flores Pasos
     // Date: 24/03/2023
     //-------------------------------------------------------------------------
     public partial class Main : MaterialSkin.Controls.MaterialForm
@@ -64,6 +63,10 @@ namespace ChatBot_Calendar
             Methods.Document();
         }
 
+        //---------------------------------------------------------------------
+        // Method: SettingsScheme
+        // Description: This method is to set the theme of the application.
+        //---------------------------------------------------------------------
         public void SettingsScheme(int op)
         {
             materialSkinManager = MaterialSkinManager.Instance;
@@ -89,9 +92,9 @@ namespace ChatBot_Calendar
                         Accent.Amber400,
                         TextShade.WHITE);
                     break;
-
             }
         }
+
         //---------------------------------------------------------------------
         // Method: BtnQuestions_Click
         // Description: This method is the event of the button questions
@@ -163,6 +166,15 @@ namespace ChatBot_Calendar
                         PnlQuestions.Controls.Add(Bot);
                         Event = new Event();
                         PnlResults.Controls.Add(Event);
+                        break;
+                    case string s when s.Contains("eliminar evento") || s.Contains("borrar evento"):
+                        
+                        break;
+                    case string s when s.Contains("modificar evento") || s.Contains("editar evento"):
+                        
+                        break;
+                    case string s when s.Contains("enviar por chat") || s.Contains("enviar lista de eventos"):
+                        Methods.SendWhatsApp();
                         break;
                     case string s when s.Contains("crear comentario") || s.Contains("agregar comentario"):
                         Bot = new Bot("¿Qué evento deseas agregar?");
